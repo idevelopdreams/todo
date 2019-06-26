@@ -1,13 +1,23 @@
 {
   "name": "todo",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "- Roger is gonna create wireframes",
   "main": "index.js",
+=======
+  "description": "server",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+>>>>>>> 6cabab06243d83479709974e449c1ac3d333f89d
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "git+https://github.com/brosephbrostar1/todo.git"
   },
   "author": "yeet",
@@ -16,4 +26,14 @@
     "url": "https://github.com/brosephbrostar1/todo/issues"
   },
   "homepage": "https://github.com/brosephbrostar1/todo#readme"
+=======
+    "url": "git+https://github.com/BruhSlatt/todo.git"
+  },
+  "author": "Tony Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BruhSlatt/todo/issues"
+  },
+  "homepage": "https://github.com/BruhSlatt/todo#readme"
+>>>>>>> 6cabab06243d83479709974e449c1ac3d333f89d
 }
