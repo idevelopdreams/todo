@@ -1,0 +1,19 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "- Roger is gonna create wireframes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brosephbrostar1/todo.git"
+  },
+  "author": "yeet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brosephbrostar1/todo/issues"
+  },
+  "homepage": "https://github.com/brosephbrostar1/todo#readme"
+}
