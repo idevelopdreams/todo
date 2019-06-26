@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/krazymonkey45/todo/issues"
   },
-  "homepage": "https://github.com/krazymonkey45/todo#readme"
+  "homepage": "https://github.com/krazymonkey45/todo#readme",
+  "dependencies": {
+    "ejs": "^2.6.2"
+  }
 }
