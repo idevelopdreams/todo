@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const urlEncoded = bodyParser.urlencoded({extended: false});
 
+let dummydata = [];
+
 const app = express();
 
 // setting up temp engine
@@ -14,13 +16,16 @@ app.use(express.static('./public'));
 // ######## ROUTES ##############
 
 // get for tasks 
-app.get('/tasks', function (req, res){
+app.get('/tasks', urlEncoded, function (req, res){
     res.render('tasks');
 });
 
 // post for tasks
-app.post('/tasks',function(req, res){
-  console.log(req)
+app.post('/tasks', urlEncoded, function(req, res){
+
+  dummydata.push(req.body.task);
+  console.log(dummydata);
+  
 });
 
 app.listen(3000, function(err){
