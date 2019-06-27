@@ -3,6 +3,8 @@ const app = express()
 
 app.set("view engine","ejs");
 
+app.use(express.static('./public'));
+
 app.get('/tasks', function (req, res) {
     res.render('tasks');
   });
