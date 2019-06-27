@@ -17,7 +17,7 @@ app.get('/tasks', function (req, res) {
 
 // post for tasks: posting a task
 app.post('/tasks', function(req, res){
-  console.log('YOOOOO Post route got HIT!!!!')
+  console.log(req)
 });
 
 app.listen(3000, function(err){
