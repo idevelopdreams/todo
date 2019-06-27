@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
 
-
+app.use(express.static('./img'));
 
 app.set("view engine","ejs");
 
-app.get('/tasks', function (req, res) {
+app.get('/', function (req, res) {
     res.render('tasks');
   });
 
