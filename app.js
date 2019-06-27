@@ -1,13 +1,22 @@
 const express = require('express')
 const app = express();
+const urlEncoded = bodyphaser.urlencoded({extended: false})
 
+// setting up
+const app = express()
+
+
+// setting up template engine 
 app.set("view engine","ejs");
+
 
 // use middle ware to serve static files
 app.use(express.static('./public'));
 
+
 app.get('/tasks', function (req, res) {
-    res.render('tasks');
+    res.render('tasks')
+    console.log(req);
   });
 
   app.listen(3000, function(err){
