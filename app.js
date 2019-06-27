@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 
-
+// use middleware to server static files
+app.use(express.static('./public'));
 
 app.set("view engine","ejs");
 
