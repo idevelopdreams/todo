@@ -1,4 +1,13 @@
-const express = require('express')
+const express = require('express');
+
+// allows taking specific info from code sent in from server post
+const bodyParser = require('body-parser');
+const urlEncoded = bodyParser.urlencoded({extended:false});
+
+let data = [];
+
+
+// setting up
 const app = express();
 
 // setting template
@@ -16,8 +25,9 @@ app.get('/tasks', function (req, res) {
   });
 
 // post for tasks: posting a task
-app.post('/tasks', function(req, res){
-  console.log(req)
+app.post('/tasks', urlEncoded, function(req, res){
+  data.push(req.body.task);
+  console.log(data)
 });
 
 app.listen(3000, function(err){
