@@ -6,6 +6,7 @@ app.use(express.static('./public'));
 
 app.set("view engine","ejs");
 
+
 // use middle ware to serve static files
 app.use(express.static('./public'));
 
