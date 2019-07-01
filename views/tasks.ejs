@@ -21,9 +21,9 @@
             <button type="submit">Add Task</button>
         </form>
         <ul class="list-group list-group-flush mt-5 text-light">
-            <li class="list-group-item">Work on my portfolio</li>
-            <li class="list-group-item">Code and watch anime</li>
-            <li class="list-group-item">Sleep</li>
+            <% for ( let i=0; i < taskToDo.length;  i++ ){%>
+                <li class="list-group-item"><%= taskToDo[i].taskItem %></li>
+            <% } %>
         </ul>
     <script src="/js/main.js"></script>
 </body>
