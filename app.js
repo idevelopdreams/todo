@@ -20,6 +20,7 @@ app.use(express.static('./public'));
 // Get for tasks: returns all tasks
 app.get('/tasks', function (req, res) {
     res.render('tasks', {taskToDo: dummyData});
+    console.log('ur mum gay');
 });
 
 // Post for tasks: posting a task
@@ -30,6 +31,13 @@ app.post('/tasks', urlEncoded, function(req, res){
     dummyData.push(incomingItem)
     console.log(dummyData)
     res.redirect('/tasks')
+});
+
+app.delete("/tasks/:id", function(req, res){
+    // console.log(req.params.id)
+    dummyData.splice(req.params.id, 1)
+    // console.log(dummyData)
+    res.redirect('/tasks');
 });
 
 app.listen(3000, function(err){
