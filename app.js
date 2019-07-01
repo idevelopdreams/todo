@@ -4,9 +4,6 @@ const urlEncoded = bodyParser.urlencoded({extended: false})
 
 const dummyData = [];
 
-// setting up
-const app = express();
-const urlEncoded = bodyphaser.urlencoded({extended: false})
 
 // setting up
 const app = express()

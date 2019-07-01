@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>wireframe</title>
     <title>Ninja | Tasks</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
 </head>
+<<<<<<< HEAD
 <body>
     <h1>Ninja Tasker</h1>
     <div style="width:1000px;height:300px;border:1px solid #000;">This is a rectangle!>
@@ -25,11 +27,19 @@
         <form action="/tasks" method="POST">
             <input type="text" name="task" placeholder="Add item ...">
             <button type="submit">Add Task</button>
+=======
+<body class="mt-5">
+     <div class="container mx-auto text-center">
+        <h1>Ninja Tasker</h1>
+        <form action="/tasks" method="POST" class="mt-0">
+            <input class="form-control form-control-lg" type="text" name="task" placeholder="Add item ...">
+            <button type="submit" class="btn btn-primary btn-lg mt-1 mb-5 btn-block">Add Mission</button>
+>>>>>>> a49c729657e91aa5f18ee8e873e98a2e89938cd7
         </form>
-        <ul>
-            <li>Work on my portfolio</li>
-            <li>Code and watch anime</li>
-            <li>Sleep</li>
+        <ul class="list-group list-group-flush mt-5 text-light">
+            <li class="list-group-item">Work on my portfolio</li>
+            <li class="list-group-item">Code and watch anime</li>
+            <li class="list-group-item">Sleep</li>
         </ul>
     </div>
     <script src="/js/main.js"></script>
