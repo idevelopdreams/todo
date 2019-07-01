@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
-const dummyData = [];
+const dummyData = [{taskItem: "sniff"},{taskItem: "eat" },{taskItem: "drink"}];
 
 // setting up
 const app = express();
@@ -19,15 +19,17 @@ app.use(express.static('./public'));
 
 // Get for tasks: returns all tasks
 app.get('/tasks', function (req, res) {
-    res.render('tasks');
+    res.render('tasks', {taskToDo: dummyData});
 });
 
 // Post for tasks: posting a task
 app.post('/tasks', urlEncoded, function(req, res){
 
-  dummyData.push(req.body.task)
-  console.log(dummyData)
-
+    let incomingItem = {}
+    incomingItem.taskItem = (req.body.task)
+    dummyData.push(incomingItem)
+    console.log(dummyData)
+    res.redirect('/tasks')
 });
 
 app.listen(3000, function(err){
