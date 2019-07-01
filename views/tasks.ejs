@@ -4,33 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ninja</title>
+    <title>Ninja | Tasks</title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1 align="middle">Ninja tasker</h1>
-    
+    <h1>Ninja Tasker</h1>
     <div>
-        <select name="Drop-down">
-            <option value="opt.1">Option 1</option>
-            <option value="opt.2">Option 2</option>
-            <option value="opt.3">Option 3</option>
-        </select>
-    </div>
-    <div align="middle">
-        <img src="cooch.jpg" width="200px" height="100px" alt="Mind if i">
-    </div>
-    <div>
-        <form action="#">
-            <input type="text" name='item' placeholder="Add Item Here">
-            <button type="submit">Submit</button>
+        <form action="/tasks" method="POST">
+            <input type="text" name="task" placeholder="Add item ...">
+            <button type="submit">Add Task</button>
         </form>
         <ul>
             <li>Work on my portfolio</li>
-            <li>Doo some stuff</li>
-            <li>Schleep</li>
+            <li>Code and watch anime</li>
+            <li>Sleep</li>
         </ul>
-    </div> 
-    <script src="/js/main.js"></script>   
+    </div>
+    <script src="/js/main.js"></script>
 </body>
 </html>
