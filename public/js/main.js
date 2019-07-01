@@ -1,15 +1,21 @@
-const taskTime = document.getElementsByTagName('li');
+const taskItems = document.getElementsByTagName('li');
 
-for (let i=0; i < taskTime.length; i++) {
-    
-    taskTime[i].addEventListener('click', function(){
-        fetch('/tasks/'+ taskTime[i].id, {method: "delete"} )
-        .then(function(res) {
-            console.log(res);
+for (let i = 0; i < taskItems.length; i++) {
+    const element = taskItems[i];
+    element.addEventListener('click', function(){
+        fetch('/tasks/' + element.id, {method: "delete"} )
+        .then(function(res){
+            // console.log(res.json());
             return res.json()
         })
         .then(function(data){
-            window.location.reload();
+            location.reload();
         })
-    })
+    }) 
 }
+
+
+
+
+
+
