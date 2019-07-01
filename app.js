@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
-const dummyData = [];
+const dummyData = [{taskItem:"X" },{taskItem: "Y"},{taskItem: "Z"}];
 
 
 // setting up
@@ -18,8 +18,7 @@ app.use(express.static('./public'));
 
 
 app.get('/tasks', function (req, res) {
-    res.render('tasks')
-    console.log(req);
+    res.render('tasks', ({taskItem: dummyData}))
   });
 
 app.listen(3000, function(err){
