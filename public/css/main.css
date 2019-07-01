@@ -1,5 +1,5 @@
 body {
-    background-color: #000033
+    background-color: #000033;
 }
 
 h1 {
@@ -15,7 +15,7 @@ h1 {
 }
 
 .list-group-item {
-    background-color: #000099 
+    background-color: #000099;
 }
 
 .btn {
@@ -25,5 +25,5 @@ h1 {
 li:hover {
     text-decoration: line-through;
     background: rgb(0,0,0,0.2);
-    cursor : pointer;
+    cursor: pointer;
 }
