@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
-const dummydata = []; 
+const dummydata = [{taskItem: "X" },{taskItem:  "Y" },{taskItem: "Z" }]; 
 
 //setting up
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.static('./public'));
 
 //Get for Tasks: returns all tasks
 app.get('/tasks', function (req, res) {
-    res.render('tasks');
+    res.render('tasks', {taskToDo: dummyData});
 });
 
 // Post for tasks: posting a task
