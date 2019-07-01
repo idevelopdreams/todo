@@ -12,11 +12,7 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-<<<<<<< HEAD
     "start":"node app.js",
-=======
-    "start": "nodemon app.js",
->>>>>>> a1234abf2f95b710fdabacd56d6fc3d13104b6c0
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
