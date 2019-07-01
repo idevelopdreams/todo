@@ -2,7 +2,7 @@ const express = require('express')
 const app = express();
 const bodyParser = require('body-parser');
 const urlEncoder = bodyParser.urlencoded({entended: false});
-const dummyData = [];
+const dummyData = [{taskItem: 'XS'}, {taskItem: 'Y'}, {taskItem: 'XYZ'}];
 
 app.set("view engine","ejs");
 
@@ -10,7 +10,7 @@ app.set("view engine","ejs");
 app.use(express.static('./public'));
 
 app.get('/tasks', function (req, res) {
-    res.render('tasks');
+    res.render('tasks', {taskToDo: dummyData});
   });
 
   // Post for tasks: posting a task
