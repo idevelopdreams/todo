@@ -15,18 +15,19 @@ app.use(express.static('./public'));
 
 
 
-//################## ROUTES ####################
+// ############### ROUTES ##############
 
-// Get for tasks: return all tasks
+// Get for tasks: returns all tasks
 app.get('/tasks', function (req, res) {
     res.render('tasks');
-  });
+});
 
-  // Post for tasks: posting a task
-app.post('/tasks' ,urlEncoded , function(req, res){
-  
+// Post for tasks: posting a task
+app.post('/tasks', urlEncoded, function(req, res){
+
   dummyData.push(req.body.task)
   console.log(dummyData)
+
 });
 
 app.listen(3000, function(err){
