@@ -32,17 +32,11 @@ app.delete("/tasks/:id",function(req,res){
   //console.log(req.params.id)
   console.splice(req.params.id, 1);
   //console.log("hitting delete route");
-res.redirect('/tasks')
+res.json(dummyData)
 });
   
-app.delete("/tasks/:id", function(req, res){
-    // console.log(req.params.id);
-    dummyData.splice(req.params.id, 1);
-    // console.log(dummyData);
-    res.redirect('/tasks')
-});
 
-app.listen(3000, function(err){
+app.listen(4000, function(err){
     if (err)
         console.log(err)
     console.log('Server is live on port 3000')  
