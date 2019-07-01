@@ -1,9 +1,9 @@
 body {
-    background-color: #000033
+    background-color: #000033;
 }
 
 h1 {
-    background: url(../ninja-logo.png) no-repeat center;
+    background: url('../ninja-logo.png') no-repeat center;
     text-indent: -10000px;
     margin-bottom: 0;
 }
@@ -15,11 +15,11 @@ h1 {
 }
 
 .list-group-item {
-    background-color: #000099
+    background-color: #000099;
 }
 
 .btn {
-    background-color: #f11421
+    background-color: #f11421;
 }
 
 li:hover {
