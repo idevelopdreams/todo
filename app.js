@@ -30,6 +30,7 @@ app.post('/tasks', urlEncoded, function(req, res){
   res.redirect('tasks')
 });
 
+<<<<<<< HEAD
 
 app.get('/tasks', function (req, res) {
     res.render('tasks', ({taskToDo: dummyData}))
@@ -40,6 +41,13 @@ app.delete("/destroyer, /:id", function(req, res){
   dummyData.splice(req.params.id, 1);
   console.log(dummyData);  console.log('hitti');
 
+=======
+app.delete("/tasks/:id", function(req, res){
+    // console.log(req.params.id);
+    dummyData.splice(req.params.id, 1);
+    // console.log(dummyData);
+    res.json(dummyData)
+>>>>>>> dff91661a793fe346dbfa545aad9dbcd9b936b44
 });
 
 app.listen(3000, function  console.log('hitti');
