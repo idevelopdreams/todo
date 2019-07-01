@@ -43,7 +43,6 @@ app.delete("/destroyer, /:id", function(req, res){
 });
 
 app.listen(3000, function  console.log('hitti');
-
     if (err)
         console.log(err)
     console.log('Server is live on port 3000')
