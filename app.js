@@ -1,31 +1,36 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const urlEncoded = bodyParser.urlencoded({entended: false})
+const urlEncoded = bodyParser.urlencoded({extended: false})
 
-let dummyData = [];
+const dummyData = [];
 
-// setting up 
+// setting up
 const app = express();
 
+// setting template engine
 app.set("view engine","ejs");
 
 // use middle ware to serve static files
 app.use(express.static('./public'));
 
-// ============= ROUTES ====================
 
-// Get for tasks: return all tasks
+
+// ############### ROUTES ##############
+
+// Get for tasks: returns all tasks
 app.get('/tasks', function (req, res) {
     res.render('tasks');
-  });
-
-// Post for taks: posting a task
-app.post('/tasks', urlEncoded, function(req, res){
-  dummyData.push(req.body.task);
-  console.log(dummyData);
 });
 
-  app.listen(3000, function(err){
+// Post for tasks: posting a task
+app.post('/tasks', urlEncoded, function(req, res){
+
+  dummyData.push(req.body.task)
+  console.log(dummyData)
+
+});
+
+app.listen(3000, function(err){
     if (err)
         console.log(err)
     console.log('Server is live on port 3000')
