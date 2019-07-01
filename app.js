@@ -2,12 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
-<<<<<<< HEAD
-const dummyData = [{
-taskItem: "Work on my portfolio"},{taskItem:"Code and watch anime"},{taskItem: "Sleep"}];
-=======
 const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
->>>>>>> 5d403486f130f7ca3c30587c1bcd14855eb3d3bd
 
 // setting up
 const app = express();
@@ -42,7 +37,7 @@ app.delete("/tasks/:id", function(req, res){
     // console.log(req.params.id);
     dummyData.splice(req.params.id, 1);
     // console.log(dummyData);
-    res.redirect('/tasks')
+    res.json(dummyData)
 });
 
 app.listen(3000, function(err){
