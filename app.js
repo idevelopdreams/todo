@@ -17,23 +17,24 @@ app.use(express.static('./public'));
 // ############### ROUTES ##############
 
 // Get for tasks: returns all tasks
-app.get('/tasks', function (req, res) {
-    console.log("hitting get route");
+app.get('/', (req, res) => { 
+    // rendering task view and passing task to do data 
     res.render('tasks', {taskToDo: dummyData});
 });
 
 // Post for tasks: posting a task
-app.post('/tasks', urlEncoded, function(req, res){
-  console.log("hitting Post route");
+app.post('/tasks', urlEncoded, (req, res) =>{
+//   console.log("hitting Post route");
+// formating for incoming data to add to my data set
   let incomingItem = {}
   incomingItem.taskItem = req.body.task
   dummyData.push(incomingItem)
-  console.log(dummyData)
-  res.redirect('/tasks')
+ console.log(dummyData)
+  res.redirect('/')
 });
-
+// deleting specified task 
 app.delete("/tasks/:id", function(req, res){
-    // console.log(req.params.id);
+    // deleting item from data set 
     dummyData.splice(req.params.id, 1);
     // console.log(dummyData);
     res.json(dummyData)
