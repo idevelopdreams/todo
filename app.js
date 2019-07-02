@@ -6,7 +6,7 @@ const urlEncoded = bodyParser.urlencoded({extended:false})
 const urlEncoded = bodyParser.urlencoded({extended: false})
 >>>>>>> a1234abf2f95b710fdabacd56d6fc3d13104b6c0
 
-const dummyData = [];
+const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
 
 // setting up
 const app = express();
@@ -23,15 +23,25 @@ app.use(express.static('./public'));
 
 // Get for tasks: returns all tasks
 app.get('/tasks', function (req, res) {
-    res.render('tasks');
+    console.log("hitting get route");
+    res.render('tasks', {taskToDo: dummyData});
 });
 
 // Post for tasks: posting a task
 app.post('/tasks', urlEncoded, function(req, res){
-
-  dummyData.push(req.body.task)
+  console.log("hitting Post route");
+  let incomingItem = {}
+  incomingItem.taskItem = req.body.task
+  dummyData.push(incomingItem)
   console.log(dummyData)
+  res.redirect('/tasks')
+});
 
+app.delete("/tasks/:id", function(req, res){
+    // console.log(req.params.id);
+    dummyData.splice(req.params.id, 1);
+    // console.log(dummyData);
+    res.json(dummyData)
 });
 
 app.listen(3000, function(err){
