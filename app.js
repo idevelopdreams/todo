@@ -43,8 +43,7 @@ app.get('/tasks', function (req, res) {
 >>>>>>> dff91661a793fe346dbfa545aad9dbcd9b936b44
 });
 
-app.listen(3000, function  console.log('hitti');
+app.listen(3000, function console.log('hitti'));
     if (err)
         console.log(err)
-    console.log('Server is live on port 3000')
-})
+    console.log('Server is live on port 3000');
