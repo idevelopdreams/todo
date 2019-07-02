@@ -3,14 +3,9 @@ for (let i = 0; i < taskItems.length; i++) {
     const element = taskItems[i];
     
 
-element.addEventListener('click', function(){
-    fetch('/tasks/'+ element.id, {method: "delete"})
-    .then(function(res){
-        // console.log(res);
-        return res.json()
-    })
-    .then(function(data){
-        window.location.reload();
-    })
-})
+    element.addEventListener('click', function(){
+        fetch('/tasks/'+ element.id, {method: "delete"})
+        .then((res) => res.json() )
+        .then((data) => window.location.reload() )
+    })        
 }

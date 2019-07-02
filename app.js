@@ -20,29 +20,29 @@ app.use(express.static('./public'));
 
 // Get for tasks: returns all tasks
 
-app.get('/tasks', function (req, res) {
-    console.log("hitting get route");
-    res.render('tasks', {taskToDo: dummyData});
+app.get('/', (req, res) => {
+    // rendering tasks view and passing taskToDo data
+    res.render('tasks.ejs', {taskToDo: dummyData});
 });
 
 // Post for tasks: posting a task
-app.post('/tasks', urlEncoded, function(req, res){
-  console.log("hitting Post route");
+app.post('/tasks', urlEncoded, (req, res) => {
+    // formatting for incoming data to add to my dataset 
   let incomingItem = {}
   incomingItem.taskItem = req.body.task
   dummyData.push(incomingItem)
   console.log(dummyData)
-  res.redirect('/tasks')
+  res.redirect('/')
 });
 
+// Delete for tasks: deleting a task
 app.delete("/tasks/:id", function(req, res){
-    // console.log(req.params.id);
+    // deleting item from data set 
     dummyData.splice(req.params.id, 1);
-    // console.log(dummyData);
     res.json(dummyData)
 });
 
-
+// Listening for request and port 3000
 app.listen(3000, function(err){
     if (err)
         console.log(err)
