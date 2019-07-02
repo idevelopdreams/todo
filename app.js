@@ -1,10 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-<<<<<<< HEAD
+
 const urlEncoded = bodyParser.urlencoded({extended:false})
 +6
 const urlEncoded = bodyParser.urlencoded({extended: false})
->>>>>>> a1234abf2f95b710fdabacd56d6fc3d13104b6c0
+
 
 const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
 
