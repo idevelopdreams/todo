@@ -58,11 +58,15 @@ app.post('/tasks', urlEncoded, (req, res) => {
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
+  db.query(sql, task, function(){
+    if (err) throw err
+    console.log(result)
+    
+  })
    // deleteing item from data set
    dummyData.splice(req.params.id, 1);
    res.json(dummyData)
 });
-
 
 app.listen(3000, function(err){
    if (err)
