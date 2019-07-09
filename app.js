@@ -1,5 +1,19 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
+
+const dataBase = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'admin',
+    password : 'student',
+    database : 'NinjaTasker'
+});
+
+dataBase.connect((err) => {
+    if (err) throw err;
+    console.log("DB is Connected")
+});
+
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
 const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
@@ -18,17 +32,24 @@ app.use(express.static('./public'));
 
 // Get for tasks: returns all tasks
 app.get('/', (req, res) => {
-    // rendering tasks view and passing taskToDo data
-    res.render('tasks.ejs', {taskToDo: dummyData});
+    let sql = 'SELECT * FROM task';
+    dataBase.query(sql, function (err, results) {
+        if (err) throw err;
+        // rendering tasks view and passing taskToDo data
+        res.render('tasks.ejs', {taskToDo: results});
+      });
 });
 
 // Post for tasks: posting a task
 app.post('/tasks', urlEncoded, (req, res) => {
 // formatting for incoming data to add to my data set
-  let incomingItem = {};
-  incomingItem.taskItem = req.body.task;
-  dummyData.push(incomingItem);
-  res.redirect('/')
+    let task = req.body
+    let sql = 'INSERT INTO task SET ?'
+    dataBase.query(sql, task, function (err, results){
+        if (err) throw err;
+        res.redirect('/')
+        console.log(results)
+    });
 });
 
 // Delete for task: deleting specify task
@@ -43,5 +64,5 @@ app.listen(3000, function(err){
     if (err)
         console.log(err)
     console.log('Server is live on port 3000')
-})
+}) 
 
