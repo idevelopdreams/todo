@@ -58,7 +58,7 @@ let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
     db.query(sql,(err, result) =>{
         if(err) throw err;
         console.log(result);
-        res.send(result)
+        res.json(result)
     })
 });
 
