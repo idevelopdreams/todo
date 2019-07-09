@@ -32,7 +32,7 @@ app.use(express.static('./public'));
 // ############### ROUTES ##############
 
 // Get for tasks: returns all tasks
-app.get('/',(req, res) => {
+app.get('/tasks',(req, res) => {
     let sql = 'SELECT * FROM task'
     db.query(sql,(err, results) => {
         if (err) throw err;
@@ -49,24 +49,20 @@ app.post('/tasks', urlEncoded,(req, res) => {
     db.query(sql, task,(err, results) => {
         if(err) throw err;
         console.log(results);
-        res.redirect('/');
+        res.redirect('/tasks');
     });
 // formatting for incoming requests
-//   let incomingItem = {};
-//   incomingItem.taskItem = req.body.task;
 });
 
 // delete for tasks
 app.delete("/tasks/:id",(req, res) => {
     // deleting item from data set
-    let sql = "DELETE FROM task WHERE taskitem =" + req.body
-    db.query(sql, (err, result) => {
-        if(err) throw err;
-        console.log(result);
-        res.send('table data deleted')
-    })
-    // dummyData.splice(req.params.id, 1);
-    res.json(dummyData);
+    let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
+        db.query(sql,(err, result) =>{
+            if(err) throw err;
+            console.log(result);
+            res.json(result)
+        })
 });
 
 app.listen(3000,(err) => {
