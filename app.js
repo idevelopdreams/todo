@@ -1,23 +1,22 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
 const urlEncoded = bodyParser.urlencoded({extended: false})
-const mysql = require ('mysql');
-
-
 
 const db = mysql.createConnection({
     host     : 'localhost',
     user     : 'admin',
     password : 'student',
     database : 'ninjatasker'
-  });
-   
-
+});
 
 db.connect(function(err){
     if (err) throw err;
-    console.log("DB IS CONNECTED ...");
+    console.log("DB is connected ...");
 });
+
+
+
 
 
 const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
@@ -54,16 +53,13 @@ app.post('/tasks', urlEncoded, (req, res) => {
     console.log(results)
     res.redirect('/')
 });
-// formatting for incoming data to add to my data set
- // let incomingItem = {};
- // incomingItem.taskItem = req.body.task;
-  //db.push(incomingItem);
-  //res.redirect('/')
-});
+    });
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
-    // deleteing item from data set
+   let sql = 'DELETE FROM task WHERE ID=1;'
+       // deleteing item from data set
+    
     dummyData.splice(req.params.id, 1);
     res.json(dummyData)
 });
