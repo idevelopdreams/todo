@@ -1,5 +1,19 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+    host : 'localhost',
+    user : 'admin',
+    password : 'avacado1219',
+    database : 'ninjatasker'
+})
+
+db.connect((err) => {
+     if (err) throw err;
+     console.log("db is connected")
+})
+
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
 const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
@@ -18,24 +32,40 @@ app.use(express.static('./public'));
 // ############### ROUTES ##############
 
 // Get for tasks: returns all tasks
-app.get('/tasks',(req, res) => {
-    // rendering tasks with dummyData list
-    res.render('tasks', {taskToDo: dummyData});
+app.get('/',(req, res) => {
+    let sql = 'SELECT * FROM task'
+    db.query(sql,(err, results) => {
+        if (err) throw err;
+        // rendering tasks with dummyData list
+       res.render('tasks', {taskToDo: results});
+    });
 });
 
 // Post for tasks: posting a task
 app.post('/tasks', urlEncoded,(req, res) => {
-    // formatting for incoming requests
-  let incomingItem = {};
-  incomingItem.taskItem = req.body.task;
-  dummyData.push(incomingItem);
-  res.redirect('/tasks');
+    let task = req.body;
+    // console.log(req.body)
+    let sql = 'INSERT INTO task SET ?';
+    db.query(sql, task,(err, results) => {
+        if(err) throw err;
+        console.log(results);
+        res.redirect('/');
+    });
+// formatting for incoming requests
+//   let incomingItem = {};
+//   incomingItem.taskItem = req.body.task;
 });
 
 // delete for tasks
 app.delete("/tasks/:id",(req, res) => {
     // deleting item from data set
-    dummyData.splice(req.params.id, 1);
+    let sql = "DELETE FROM task WHERE taskitem =" + req.body
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+        res.send('table data deleted')
+    })
+    // dummyData.splice(req.params.id, 1);
     res.json(dummyData);
 });
 
