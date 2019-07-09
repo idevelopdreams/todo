@@ -6,7 +6,7 @@ const db = mysql.createConnection({
     host     : 'localhost',
     user     : 'admin',
     password : 'student',
-    database : 'ninjatasker'
+    database : 'ninjatasker'                                                                            
 
 });
 
@@ -51,18 +51,16 @@ app.post('/tasks', urlEncoded, (req, res) => {
         console.log(results)
         res.redirect('/')
     });
-// formatting for incoming data to add to my data set
-//   let incomingItem = {};
-//   incomingItem.taskItem = req.body.task;
-//   dummyData.push(incomingItem);
-  
 });
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
-    // deleteing item from data set
-    dummyData.splice(req.params.id, 1);
-    res.json(dummyData)
+    let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
+    db.query(sql,(err, result) => {
+        if(err) throw err;
+        console.log(result);
+        res.json(result)
+    })
 });
 
 // Server Test
