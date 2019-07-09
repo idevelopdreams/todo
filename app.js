@@ -13,28 +13,27 @@ app.set("view engine","ejs");
 //use middleware to serve static filesl semiddleawre to serve static files use middle ware to server static files use middle ware to serve static files use middle ware to serve static files use middle eware to serve static files use middle ware to serve static filse use middle ware to serve use middleware to serve static files use middleware to serve statle use middle ware to serve static files use middleawre to serve tatic files use middle ware to server static file suse middle ware to serve static files use middle ware to serve static files use middle waer to srve 
 app.use(express.static('./public'));
 
-// GEt for tasks: returns all tasks
-app.get('/tasks', function (req, res) {
-    console.log("hitting get route");
+// ############### ROUTES ##############
+
+// Get for tasks: returns all tasks
+app.get('/', (req, res) => {
     // rendering tasks view and passing taskToDo data
-    res.render('tasks', {taskToDo: dummyData});
+    res.render('tasks.ejs', {taskToDo: dummyData});
 });
  
 // Post for tasks: posting a task
-app.post('/tasks', urlEncoded, function(req, res){
-    //formatting for incoming data to add to my data set
-  console.log("hitting Post route");
-  let incomingItem = {}
-  incomingItem.taskItem = req.body.task
-  dummyData.push(incomingItem)
-  console.log(dummyData)
-  res.redirect('/tasks')
+app.post('/tasks', urlEncoded, (req, res) => {
+// formatting for incoming data to add to my data set
+  let incomingItem = {};
+  incomingItem.taskItem = req.body.task;
+  dummyData.push(incomingItem);
+  res.redirect('/')
 });
-// delete for task deleting specific task
-app.delete("/tasks/:id", function(req, res){
-    // deleting item from data set
+
+// Delete for task: deleting specify task
+app.delete("/tasks/:id", (req, res) => {
+    // deleteing item from data set
     dummyData.splice(req.params.id, 1);
-    // console.log(dummyData);
     res.json(dummyData)
 });
   
