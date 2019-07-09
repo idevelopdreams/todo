@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BruhSlatt/todo.git"
+    "url": ""
   },
   "author": "Alex Wolfenden",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BruhSlatt/todo/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/BruhSlatt/todo#readme"
+  "homepage":""
 }
