@@ -52,7 +52,7 @@ app.post('/tasks', urlEncoded, (req, res) => {
     });
 });
 
-// Delete for task: deleting specific task
+// Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
     let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
     db.query(sql,(err, result) =>{
