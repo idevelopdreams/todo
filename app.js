@@ -57,7 +57,7 @@ app.post('/tasks', urlEncoded, (req, res) => {
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
-   let sql = 'DELETE FROM task WHERE ID=1;'
+   let sql = 'DELETE FROM task WHERE ID='
        // deleteing item from data set
     
     dummyData.splice(req.params.id, 1);
