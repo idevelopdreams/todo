@@ -23,20 +23,18 @@ app.get('/', (req, res) => {
 
 // Post for tasks: posting a task
 app.post('/tasks', urlEncoded, (req, res) => {
-    // console.log("hitting Post route");
-    // formatting for incoming data to add to my data set
-    let incomingItem = {}
-    incomingItem.taskItem = req.body.task
-    dummyData.push(incomingItem)
-    // console.log(dummyData)
-    res.redirect('/')
+// formatting for incoming data to add to my data set
+  let incomingItem = {};
+  incomingItem.taskItem = req.body.task;
+  dummyData.push(incomingItem);
+  res.redirect('/')
 });
 
-// Delete for task: deleting specific task
+// Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
-    // deleting item from data set
+    // deleteing item from data set
     dummyData.splice(req.params.id, 1);
-    res.json(dummyData);
+    res.json(dummyData)
 });
 
 // Server Test
