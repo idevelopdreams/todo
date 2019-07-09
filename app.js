@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 });
 
 // Post for tasks: posting a task
-app.post('/tasks', urlEncoded, (req, res) =>{
+app.post('/', urlEncoded, (req, res) =>{
 //   console.log("hitting Post route");
 // formating for incoming data to add to my data set
   let incomingItem = {}
