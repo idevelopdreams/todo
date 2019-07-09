@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
     db.query(sql, function (err, results) {
         if (err) throw err;
         // rendering tasks view and passing taskToDo data
+        console.log(results)
         res.render('tasks', {taskToDo: results});
     });
 });
@@ -54,8 +55,8 @@ app.post('/tasks', urlEncoded, (req, res) => {
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
-    let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
-    db.query(sql,(err, result) =>{
+    let sql = 'DELETE  FROM task WHERE ID =' + req.params.id;
+    db.query(sql, function(err, result) {
         if(err) throw err;
         console.log(result);
         res.json(result)
