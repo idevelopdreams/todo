@@ -16,6 +16,26 @@ db.connect(function(err){
 });
 
 const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime" },{taskItem: "Sleep" }];
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'admin',
+    password : 'student',
+    database : 'ninjatasker'
+});
+
+db.connect(function(err){
+    if (err) throw err;
+    console.log("DB is connected ...");
+});
+
+
+const urlEncoded = bodyParser.urlencoded({extended: false})
+
+const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
 
 // setting up
 const app = express();
@@ -72,3 +92,4 @@ app.listen(3000, function(err){
     console.log(err);
   console.log('Server is live on port 3000');
 });
+
