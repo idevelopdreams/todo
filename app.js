@@ -50,22 +50,17 @@ app.post('/tasks', urlEncoded, (req, res) => {
         console.log(results)
         res.redirect('/')
     });
-// formatting for incoming data to add to my data set
-//   let incomingItem = {};
-//   incomingItem.taskItem = req.body.task;
-//   dummyData.push(incomingItem);
-  
 });
 
 // Delete for task: deleting specific task
 app.delete("/tasks/:id", (req, res) => {
-  let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
+    let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
     db.query(sql,(err, result) =>{
         if(err) throw err;
         console.log(result);
-        res.send(result)
+        res.json(result)
     })
-  });
+});
 
 app.listen(3000, function(err){
     if (err)
