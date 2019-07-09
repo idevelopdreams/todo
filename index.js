@@ -6,8 +6,8 @@ app.set("view engine", "ejs");
 
 app.use(express.static('./public'));
 
-app.get('/home', function (req, res) {
-  res.render('homecd ..');
+app.get('/tasks', function (req, res) {
+  res.render('tasks');
 });
 
  
