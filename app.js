@@ -3,6 +3,8 @@ const routes   = require('./routes');
 const database = require('./models/todo')
 import 'dotenv/config'
 
+const port = 3000 ;
+
 // starting up app
 const app = express();
 
