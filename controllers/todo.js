@@ -1,15 +1,6 @@
-const mysql = require('mysql');
-
-const db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'admin',
-    password : 'student',
-    database : 'NinjaTasker'
-});
-
 exports.allTodos = (req, res) => {
     let sql = 'SELECT * FROM task';
-    db.query(sql, function (err, results) {
+    req.context.db.query(sql, function (err, results) {
         if (err) throw err;
         // rendering tasks view and passing taskToDo data
         res.render('tasks', {taskToDo: results});
@@ -19,7 +10,7 @@ exports.allTodos = (req, res) => {
 exports.todoPosts = (req, res) => {
     let task = req.body
     let sql = 'INSERT INTO task SET ?';
-    db.query(sql, task, function (err, results) {
+    req.context.db.query(sql, task, function (err, results) {
         if (err) throw err;
         // rendering tasks view and passing taskToDo data
         console.log(results)
@@ -29,7 +20,7 @@ exports.todoPosts = (req, res) => {
 
 exports.removeTask = (req, res) => {
     let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
-    db.query(sql,(err, result) =>{
+    req.context.db.query(sql,(err, result) =>{
         if(err) throw err;
         console.log(result);
         res.json(result)
