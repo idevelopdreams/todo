@@ -16,7 +16,7 @@ db.connect((err) => {
 
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
-const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
+// const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
 
 // setting up
 const app = express();
