@@ -1,6 +1,16 @@
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'admin2',
+    password : 'student',
+    database : 'ninjatasker'
+});
+
 exports.allTodos = (req, res) => {
+    console.log(req.context);
     let sql = 'SELECT * FROM task';
-    db.query(sql, function (err, results) {
+    req.context.db.query(sql, function (err, results) {
         if (err) throw err;
         // rendering tasks view and passing taskToDo data
         console.log(results)
@@ -11,7 +21,7 @@ exports.allTodos = (req, res) => {
 exports.postTodos = (req, res) => {
     let task = req.body
     let sql = 'INSERT INTO task SET ?';
-    db.query(sql, task, function (err, results) {
+    req.context.db.query(sql, task, function (err, results) {
         if (err) throw err;
         // rendering tasks view and passing taskToDo data
         console.log(results)
@@ -21,7 +31,7 @@ exports.postTodos = (req, res) => {
 
 exports.killTodos = (req, res) => {
     let sql = 'DELETE  FROM task WHERE ID =' + req.params.id;
-    db.query(sql, function(err, result) {
+    req.context.db.query(sql, function(err, result) {
         if(err) throw err;
         console.log(result);
         res.json(result)
