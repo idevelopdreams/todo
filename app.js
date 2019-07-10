@@ -49,6 +49,7 @@ app.post('/tasks', urlEncoded, (req, res) => {
         // rendering tasks view and passing taskToDo data
         console.log(results)
         res.redirect('/')
+<<<<<<< HEAD
     });  
 
 // formatting for incoming data to add to my data set
@@ -56,11 +57,15 @@ app.post('/tasks', urlEncoded, (req, res) => {
 //   incomingItem.taskItem = req.body.task;
 //   dummyData.push(incomingItem);
 //   res.redirect('/')
+=======
+    });
+>>>>>>> acb59165ed6ede8837f2ca44f21ba2ae1042e7f9
 });
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
     let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
+<<<<<<< HEAD
        db.query(sql,(err, result) =>{
            if(err) throw err;
            console.log(result);
@@ -68,6 +73,14 @@ app.delete("/tasks/:id", (req, res) => {
        })
     });
 
+=======
+    db.query(sql,(err, result) =>{
+        if(err) throw err;
+        console.log(result);
+        res.json(result)
+    })
+});
+>>>>>>> acb59165ed6ede8837f2ca44f21ba2ae1042e7f9
 
 app.listen(3000, (err) => {
     if (err)
