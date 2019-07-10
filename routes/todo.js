@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+
+//parsing form data
+const bodyParser = require('body-parser');
+const urlEncoded = bodyParser.urlencoded({extended: false})
 // ############### ROUTES ##############
 
 // Get for tasks: returns all tasks
@@ -34,3 +38,5 @@ app.delete("/tasks/:id", (req, res) => {
         res.json(result)
     })
 });
+
+module.exports = router;
