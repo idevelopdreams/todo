@@ -15,10 +15,6 @@ db.connect(function(err){
     console.log("DB is connected ...");
 });
 
-
-
-
-
 const dummyData = [{taskItem: "Work on my portfolio" },{taskItem: "Code and watch anime"},{taskItem: "Sleep"}];
 
 //settnig up
@@ -49,19 +45,20 @@ app.post('/tasks', urlEncoded, (req, res) => {
     let sql = 'INSERT INTO task SET ?' ;
     db.query(sql, task, function (err, results) {
         if (err) throw err;
- // rendering tasks view and passing taskToDo data
-    console.log(results)
-    res.redirect('/')
-});
+        // rendering tasks view and passing taskToDo data
+        console.log(results)
+        res.redirect('/')
     });
+});
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
-   let sql = 'DELETE FROM task WHERE ID='
-       // deleteing item from data set
-    
-    dummyData.splice(req.params.id, 1);
-    res.json(dummyData)
+    let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
+    db.query(sql,(err, result) =>{
+        if(err) throw err;
+        console.log(result);
+        res.json(result)
+    })
 });
   
 
