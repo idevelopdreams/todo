@@ -1,6 +1,6 @@
 
 exports.allTodos = (req, res) => {
-    console.log(req.context)
+    // console.log(req.context)
     let sql = 'SELECT * FROM task'
     req.context.db.query(sql,(err, results) => {
         if (err) throw err;

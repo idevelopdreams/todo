@@ -1,6 +1,10 @@
 const express = require('express')
 const routes = require('./routes')
 const database = require('./models/todo')
+require('dotenv').config()
+
+const port = process.env.PORT || 3000 ;
+
 // starting up
 const app = express();
 
@@ -19,8 +23,8 @@ app.set("view engine","ejs");
 // use middle ware to serve static files
 app.use(express.static('./public'));
 
-app.listen(3000,(err) => {
+app.listen(port,(err) => {
     if (err);
         console.log(err);
-    console.log('Server is live on port 3000');
+    console.log('Server is live on port ' + port);
 })
