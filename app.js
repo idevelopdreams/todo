@@ -5,6 +5,13 @@ const routes = require('./routes');
 // starting up
 const app = express();
 
+// adding content to our Request
+app.use( (req,res , next ) =>{
+    req.context = { db: "dummy info"  }
+    next(); 
+} )
+
+
 // routing manager
 app.use(routes);
 
