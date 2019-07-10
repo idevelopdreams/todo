@@ -1,12 +1,3 @@
-const mysql = require('mysql');
-
-const db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'admin2',
-    password : 'student',
-    database : 'ninjatasker'
-});
-
 exports.allTodos = (req, res) => {
     let sql = 'SELECT * FROM task';
     db.query(sql, function (err, results) {

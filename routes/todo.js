@@ -2,11 +2,6 @@ const express        = require('express');
 const todoController = require('../controllers/todo');
 const router         = express.Router();
 
-db.connect(function(err){
-    if (err) throw err;
-    console.log("DB is connected ...");
-});
-
 // parsing form data
 const bodyParser = require('body-parser');
 const urlEncoded = bodyParser.urlencoded({extended: false})
