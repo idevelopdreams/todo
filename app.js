@@ -2,17 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
-const dataBase = mysql.createConnection({
+const db = mysql.createConnection({
     host     : 'localhost',
     user     : 'admin',
     password : 'student',
-    database : 'NinjaTasker'
+    database : 'ninjatasker'
 });
 
-dataBase.connect((err) => {
+db.connect(function(err){
     if (err) throw err;
-    console.log("DB is Connected")
+    console.log("DB is connected ...");
 });
+
 
 const urlEncoded = bodyParser.urlencoded({extended: false})
 
@@ -33,32 +34,32 @@ app.use(express.static('./public'));
 // Get for tasks: returns all tasks
 app.get('/', (req, res) => {
     let sql = 'SELECT * FROM task';
-    dataBase.query(sql, function (err, results) {
+    db.query(sql, function (err, results) {
         if (err) throw err;
         // rendering tasks view and passing taskToDo data
-        res.render('tasks.ejs', {taskToDo: results});
-      });
+        res.render('tasks', {taskToDo: results});
+    });
 });
 
 // Post for tasks: posting a task
 app.post('/tasks', urlEncoded, (req, res) => {
-// formatting for incoming data to add to my data set
     let task = req.body
-    let sql = 'INSERT INTO task SET ?'
-    dataBase.query(sql, task, function (err, results){
+    let sql = 'INSERT INTO task SET ?';
+    db.query(sql, task, function (err, results) {
         if (err) throw err;
-        res.redirect('/')
+        // rendering tasks view and passing taskToDo data
         console.log(results)
+        res.redirect('/')
     });
 });
 
 // Delete for task: deleting specify task
 app.delete("/tasks/:id", (req, res) => {
     let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
-       dataBase.query(sql, (err, result) => {
-           if(err) throw err;
-           console.log(result);
-           res.json(result)
+    db.query(sql,(err, result) =>{
+        if(err) throw err;
+        console.log(result);
+        res.json(result)
     })
 });
 
