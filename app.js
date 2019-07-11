@@ -1,9 +1,8 @@
 const express  = require('express');
 const routes   = require('./routes');
-const database = require('./db')
+const database = require("./models");
 require('dotenv').config()
 
-const db = require("./models");
 
 const port = process.env.PORT || 3000;
 
@@ -13,7 +12,7 @@ const app = express();
 
 // adding somthing to request
 app.use((req, res, next) => {
-    req.context = { db: database }
+    req.context = { database: database }
     next();
 });
 
@@ -29,7 +28,7 @@ app.set("view engine","ejs");
 // use middle ware to serve static files
 app.use(express.static('./public'));
 
-db.sequelize.sync().then(function(){
+database.sequelize.sync().then(function(){
     // Listening for request and port 3000
     app.listen(port, function(err){
     if (err)
