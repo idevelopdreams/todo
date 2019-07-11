@@ -1,9 +1,9 @@
-const express = require('express');
-const routes = require('./routes');
-const database = require('./db');
+const express   = require('express');
+const routes    = require('./routes');
+
+const database        = require("./models");
 require ('dotenv').config()
 
-const db = require("./models");
 
 const port = process.env.PORT || 3000;
 
@@ -24,7 +24,7 @@ app.set("view engine","ejs");
 //use middleware to serve static filesl semiddleawre to serve static files use middle ware to server static files use middle ware to serve static files use middle ware to serve static files use middle eware to serve static files use middle ware to serve static filse use middle ware to serve use middleware to serve static files use middleware to serve statle use middle ware to serve static files use middleawre to serve tatic files use middle ware to server static file suse middle ware to serve static files use middle ware to serve static files use middle waer to srve 
 app.use(express.static('./public'));
  
-db.sequelize.sync().then(function(){
+database.sequelize.sync().then(function(){
     app.listen(3000, function(err){
         if (err)
             console.log(err)
