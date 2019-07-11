@@ -1,31 +1,35 @@
 
 exports.allTodos = (req, res) => {
-    // console.log(req.context)
-    let sql = 'SELECT * FROM Tasks'
-    req.context.db.query(sql,(err, results) => {
-        if (err) throw err;
+    // console.log(req.context.db.Task)
+    req.context.db.Task.findAll({
+        attributes: ['id', 'taskItem']
+    }).then((results)=>{
         // rendering tasks with dummyData list
-       res.render('tasks', {taskToDo: results});
-    });
+        res.render('tasks', {taskToDo: results});
+    }).catch((err)=>{
+        console.log(err);
+        res.json(err);
+    })
 };
 
 exports.allPosts = (req, res) => {
-    let task = req.body;
-    // console.log(req.body)
-    let sql = 'INSERT INTO Tasks SET ?';
-    req.context.db.query(sql, task,(err, results) => {
-        if(err) throw err;
-        console.log(results);
-        res.redirect('/tasks');
-    });
+    req.context.db.Task.create({
+        taskItem: req.body.taskItem
+    }).then(()=>{
+        res.redirect('/tasks')
+    }).catch((err)=>{
+        console.log(err)
+        res.json(err)
+    })
 };
 
 exports.allDeletes = (req, res) => {
-    // deleting item from data set
-    let sql = 'DELETE  FROM Tasks WHERE ID=' + req.params.id;
-        req.context.db.query(sql,(err, result) =>{
-            if(err) throw err;
-            console.log(result);
-            res.json(result)
-        })
-}
+    req.context.db.Task.destroy({
+        where: { id: req.params.id }
+    }).then((result)=>{
+    res.json(result)
+    }).catch((err)=>{
+    console.log(err)
+    res.json(err)
+    })
+};
