@@ -19,7 +19,7 @@ exports.todoPosts = (req, res) => {
 };
 
 exports.removeTask = (req, res) => {
-    let sql = 'DELETE  FROM task WHERE ID=' + req.params.id;
+    let sql = 'DELETE FROM task WHERE ID=' + req.params.id;
     req.context.db.query(sql,(err, result) =>{
         if(err) throw err;
         console.log(result);
