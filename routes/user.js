@@ -4,15 +4,13 @@ const userController = require('../controllers/user')
 
 router.get('/user/signup', userController.register)
 
-// router.get('/user/signup', userController)
-
 router.get('/user/login', userController.login)
 
 // router.post('user/signup', userController)
 
 // router.post('/user/login', userController)
 
-// router.get('/logout', userController)
+router.get('/user/logout', userController.logout)
 
 router.get('/user/profile', userController.profile)
 
