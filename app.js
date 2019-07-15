@@ -5,7 +5,6 @@ const database   = require('./models')
 const session = require('express-session')
 const passport = require('./config/password');
 
-
 const port = process.env.PORT || 3000 ;
 
 // starting up
@@ -28,6 +27,7 @@ app.use(express.static('./public'));
 app.use(session({ secret: "spaghetti", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 
 database.sequelize.sync().then(()=>{
