@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 //creating our user model
 //export the model so our index can use it
 module.exports = function(sequelize, DataTypes){
@@ -15,6 +17,22 @@ module.exports = function(sequelize, DataTypes){
             allowNull: false
         }
     });
- 
+
+   // create custome method for our user model.
+   //this will handle if an unhashed password the user is providing 
+   //is equal to the hash password in our databases
+   
+   User.prototype.validPassword = function(password){
+        return bcrypt.compareSync(password, this.password)
+   };
+
+    //Hook are variouse method that run during our model lifecycle.
+    //if this case., before a user is created, we will automatically 
+    //encrypt passwords coming in
+
+    User.addHook("beforeCreate", function(user){
+        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null)
+    });
+
     return User
  };
