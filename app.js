@@ -1,9 +1,7 @@
 const express = require('express');
 const routes  = require('./routes');
-const database = require('./db');
+const database = require("./models");
 require('dotenv').config()
-
-const db = require("./models");
 
 
 const port = process.env.PORT || 3000 ;
@@ -27,7 +25,7 @@ app.set("view engine","ejs");
 app.use(express.static('./public'));
 
 
-db.sequelize.sync().then(function(){
+database.sequelize.sync().then(function(){
     app.listen(port, function(err){
         if (err)
             console.log(err)
