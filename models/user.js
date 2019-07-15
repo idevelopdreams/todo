@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes){
 // create custom method for our user model.
 // this will handle if an unhashed password the user is providing
 // is equal to the hash password in out database
-User.prototype.validaPassword = function(password){
+User.prototype.validPassword = function(password){
     return bcrypt.compareSync(password, this.password)
 }
 

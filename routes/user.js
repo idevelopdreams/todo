@@ -1,17 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user')
+const passport = require('../config/passport');
 
-router.get('/user/signup', userController.register );
+const bodyParser = require('body-parser')
+const readForm = bodyParser.urlencoded({extended: false})
 
-router.get('/user/login', userController.login)
+router.get('/user/signup', userController.userRegister );
 
-// router.post('/user/signup', userController)
+router.get('/user/login', userController.userLogin);
 
-// router.post('/user/login', userController.login)
+router.post('/user/signup', readForm, userController.signup );
 
-router.get('/profile', userController.profile)
+router.post('/user/login', readForm, passport.authenticate('local', 
+    { successRedirect: '/',
+    failureRedirect: '/user/login'
+    })
+);
 
-// router.get('/logout', userController)
+router.get('/profile', userController.userProfile);
+
+router.get('/logout', userController.userLogout);
 
 module.exports = router;
