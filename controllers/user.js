@@ -14,7 +14,8 @@ exports.userProfile = (req, res) => {
 };
 // GET for /logout
 exports.userLogout = (req, res) => {
-    res.redirect('/')
+    req.logout();
+    res.redirect('/user/logout')
 };
 // POST /user/signup
 exports.signup = (req, res) => {
