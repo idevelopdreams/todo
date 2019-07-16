@@ -16,7 +16,8 @@ exports.userProfile = (req, res)=> {
 
 // GET for /logout
 exports.userLogout = (req, res)=> {
-    res.redirect('/');
+    req.logout();
+    res.redirect('/user/login');
 }
 
 //POST /user/signup

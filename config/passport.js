@@ -6,7 +6,7 @@ const db = require('../models')
 // telling passport we want to use local startegy, in other words we want to use 
 // email and password
 passport.use(new LocalStrategy(
-  { emailField: 'email' },
+  { usernameField: 'email' },
     function(email, password, done) {
       db.User.findOne( { where: { email: email} } ).then( function(dbuser){
         //if there is no user with the provide email 
@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(
         }
 
         //if none of the above happens, return user
-        return done(null, dbuser)
+        return done(null, dbuser);
       });
     }
   ));
