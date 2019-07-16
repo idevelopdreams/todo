@@ -1,8 +1,9 @@
+require('dotenv').config()
 const express  = require('express');
 const routes   = require('./routes');
 const database = require("./models");
-require('dotenv').config()
-
+const session = require('express-session')
+const passport = require('./config/auth')
 
 const port = process.env.PORT || 3000;
 
@@ -18,15 +19,20 @@ app.use((req, res, next) => {
 
 
 // routing manager
-app.use(routes)
+
 
 
 // setting template engine
 app.set("view engine","ejs");
 
 
-// use middle ware to serve static files
+// middle ware
 app.use(express.static('./public'));
+app.use(session({ secret: "I Love Eating Blocks of Cheese", resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(routes)
 
 database.sequelize.sync().then(function(){
     // Listening for request and port 3000
