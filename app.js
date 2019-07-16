@@ -32,7 +32,7 @@ app.use(passport.session());
 
 database.sequelize.sync().then(()=>{
     app.listen(port,(err) => {
-        if (err);
+        if (err)
             console.log(err);
         console.log('Server is live on port ' + port);
     })

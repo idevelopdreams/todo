@@ -17,13 +17,14 @@ exports.profile = (req,res) => {
 }
 
 exports.logout = (req,res) => {
-    res.redirect('/tasks');
+    req.logout();
+    res.redirect('/user/login');
 }
 
 exports.signup = (req,res) => {
     req.context.db.User.create({
         email: req.body.email,
-        password:req.body.password
+        password: req.body.password
     }).then(() => {
         res.redirect('/profile')
     }).catch((err) => {

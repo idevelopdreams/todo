@@ -7,17 +7,17 @@ const db = require('../models/');
 passport.use(new LocalStrategy(
   { usernameField: 'email' },
   function(email, password, done) {
-    db.User.findOne( { where: {email: email} }).then( (dbUser)=> {
+    db.User.findOne( { where: {email: email} }).then( function(dbUser){
         // if no user 
-        if (dbUser) {
+        if (!dbUser) {
             return done(null, false, { message: 'Incorrect email.' });
         }
         // if email correct but password is wrong
-        else if (dbUser.validPassword(password)) {
+        else if (!dbUser.validPassword(password)) {
             return done(null, false, { message: 'Incorrect password.' });
         }
         // if none happens return user
-        return done(null, dbUser)
+        return done(null, dbUser);
 
     });
   }
