@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-exports.allTodos =  (req, res) => {
-    console.log(req.context.db)
-=======
 exports.allTodos = (req, res) => {
->>>>>>> 8653b4e2bb7aab14059ab5c6cf92e7e3d3325ff1
     req.context.db.Task.findAll({
         attributes: ['id', 'taskItem']
     }).then(function(results){
@@ -12,23 +7,21 @@ exports.allTodos = (req, res) => {
     }).catch(function(err){
         console.log(err);
         res.json(err);
-<<<<<<< HEAD
-    })
-};
-
-exports.postTodos = (req, res) => {
-=======
     });
 }
 
 exports.addTask = (req, res) => {
->>>>>>> 8653b4e2bb7aab14059ab5c6cf92e7e3d3325ff1
-    req.context.db.Task.create({
-        taskItem: req.body.taskItem
+    req.context.db.Task.c    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        taskItem: req.bod    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     }).then(function(){
-        res.redirect('/');
-    }).catch(function(err){
-        console.log(err);
+        res.redirect('/')    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    }).catch(function(err    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        console.log(err);    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
         res.json(err);
     });
 }
