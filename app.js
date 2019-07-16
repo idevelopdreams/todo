@@ -17,8 +17,6 @@ app.use( (req, res, next ) => {
     next();
 } )
 
-// routing manager
-app.use(routes);
 
 // setting template engine
 app.set("view engine","ejs");
@@ -26,9 +24,12 @@ app.set("view engine","ejs");
 
 // setting up middleware
 app.use(express.static('./public'));
-app.use(session( {secret: 'I love veros cohort 2', resave: true, saveUninitialized: true}));
+app.use(session( {secret: 'I love Veros cohort 2', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// routing manager
+app.use(routes);
 
 
 database.sequelize.sync().then(function(){
@@ -38,3 +39,5 @@ database.sequelize.sync().then(function(){
         console.log('Server is live on port: ' + port)
     })
 });
+
+

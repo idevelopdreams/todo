@@ -1,7 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 const userController = require('../controllers/user')
-
+const passport = require('../config/passport')
+const isAuthenticated = require('../config/middleware/isAuthenticated')
 // parsing form data
 const bodyParser = require('body-parser');
 const readForm = bodyParser.urlencoded({extended: false})
@@ -18,7 +19,7 @@ router.post('/user/login', readForm, passport.authenticate('local',
     })
 );
 
-router.get('/profile', userController.userProfile)
+router.get('/profile', isAuthenticated, userController.userProfile)
 
 router.get('/logout', userController.userLogout)
 
