@@ -1,36 +1,36 @@
 
-// GET for /user/signup
+
+// GET user/signup
 exports.register = (req, res) => {
     res.render('register');
 }
 
-exports.login = (req, res) => {
+// GET /user/login
+exports.userLogin = (req, res) => {
     res.render('login');
-};
+}
 
-exports.userPost = (req, res) => {
-    res.render('login');
-};
-
-exports.profile = (req,res) => {
+// GET /profile
+exports.userProfile = (req, res) => {
     res.render('profile');
 }
 
-exports.logout = (req,res) => {
+// GET for /logout
+exports.userLogout = (req, res) => {
     req.logout();
     res.redirect('/user/login');
 }
 
-exports.signup = (req,res) => {
+// POST /user/signup
+exports.signup = (req, res) => {
     req.context.db.User.create({
-        email: req.body.email,
+        email: req.body.email , 
         password: req.body.password
-    }).then(() => {
+    }).then(function () {
         res.redirect('/profile')
-    }).catch((err) => {
+    }).catch(function (err) {
         console.log(err);
         res.json(err);
     })
-
 }
 

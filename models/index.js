@@ -35,7 +35,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
-// connects to database in developement or production
-// reads all files in models folder
-// allows file access everywhere
-// expects the files it's reading to contain an export of a table
+// connects to our database in developement or production
+// reads all the files in the models folder 
+// makes the files it reads available for us in our entire app
+// expects the files its reading to contain an export of a table

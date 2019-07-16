@@ -1,38 +1,28 @@
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 const userController = require('../controllers/user')
-const passport = require('../config/password');
-const authent = require('../config/middleware/isAuthenticated')
+const passport = require('../config/passport')
+const isAuthenticated = require('../config/middleware/isAuthenticated');
 
+// parsing form data
+const bodyParser = require('body-parser');
+const readForm = bodyParser.urlencoded({extended: false})
 
-// Parsing data
-const bodyParser = require('body-parser')
-const urlEncoded = bodyParser.urlencoded({extended: false})
+router.get( '/user/signup', userController.register );
 
-// #######################ROUTES###########################
+router.get( '/user/login', userController.userLogin )
 
-// User sign in
-router.get('/user/signup', userController.register);
+router.post( '/user/signup', readForm, userController.signup );
 
-router.get('/user/login', userController.login);
-
-
-// user posts
-router.post('/user/signup', urlEncoded, userController.signup);
-
-router.post('/user/login', urlEncoded, passport.authenticate('local', { 
+router.post('/user/login', readForm,  passport.authenticate('local', { 
     successRedirect: '/profile',
-    failureRedirect: '/tasks'
-})
+    failureRedirect: '/user/login' 
+    })
 );
 
+router.get('/profile', isAuthenticated, userController.userProfile);
 
-// profile page
-router.get('/profile', authent, userController.profile);
-
-
-// logout for users
-router.get('/logout', userController.logout);
-
+router.get('/logout', userController.userLogout);
 
 module.exports = router;
+
