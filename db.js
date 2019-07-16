@@ -4,8 +4,7 @@
 //     host     : 'localhost',
 //     user     : 'admin',
 //     password : 'student',
-//     database : 'ninjatasker'                                                                            
-
+//     database : 'ninjatasker'
 // });
 
 // db.connect(function(err){

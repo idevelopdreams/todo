@@ -1,35 +1,40 @@
-const express = require('express');
-const routes = require('./routes');
-const database = require('./models');
-require('dotenv').config();
+require('dotenv').config() 
 
+const express = require('express');
+const routes  = require('./routes');
+const database = require('./models');
+const session = require('express-session');
+const passport = require('./config/passport');
 
 const port = process.env.PORT || 3000 ;
 
-// setting up
+// starting up app
 const app = express();
 
 // adding context to our request
-app.use( (req, res, next) => {
+app.use( (req, res, next ) => {
     req.context = { db: database }
     next();
-} );
-
-// routing manager
-app.use(routes);
+} )
 
 // setting template engine
 app.set("view engine","ejs");
 
-// use middle ware to serve static files
+// setting up all middleware
 app.use(express.static('./public'));
+app.use(session({ secret: "I love veros cohort 2", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// routing manager
+app.use(routes);
+
 
 database.sequelize.sync().then(function(){
-    // Server Test
     app.listen(port, function(err){
         if (err)
             console.log(err)
-        console.log('Server is live on port ' + port)
-    });
+        console.log('Server is live on port: ' + port)
+    })
 });
 
