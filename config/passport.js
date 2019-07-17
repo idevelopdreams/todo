@@ -5,6 +5,7 @@ const db = require('../models');
 
 // telling passport we want to use local strategy, in other words we want to use
 // email and password
+// for signing in
 passport.use(new LocalStrategy(
     {  usernameField: 'email' },
     function(email, password, done) {
@@ -20,6 +21,37 @@ passport.use(new LocalStrategy(
 
         // if none of the above happens, return user
         return done(null, dbuser);
+      });
+    }
+));
+
+// for when a user signs up
+passport.use('local-signup', new LocalStrategy(
+    {  usernameField: 'email',
+        passReqToCallback: true}, // allows us to use the entire request coming from our app
+    function(req, email, password, done) {
+      db.User.findOne( { where: { email: email } } ).then( function(dbuser){
+        // to verify that the email is not in use
+        if (dbuser) {
+            return done(null, false, { message: 'Email is already taken.' } );
+        } else {
+            // add user to the database
+            db.User.create({
+                email: email , 
+                password: password,
+                name: req.body.name
+            }).then(function (newUser) {
+                if (!newUser){
+                    return done(null, false)
+                }
+                if (newUser){
+                    return done(null, newUser)
+                }
+            }).catch(function (err) {
+                console.log(err);
+                res.json(err);
+            })
+        }
       });
     }
 ));
