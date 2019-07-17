@@ -5,6 +5,11 @@ const database = require("./models");
 const session = require('express-session')
 const passport = require('./config/auth')
 
+
+// parsing form data
+const bodyParser = require('body-parser').urlencoded({extended: false});
+
+
 const port = process.env.PORT || 3000;
 
 // starting up app
@@ -17,21 +22,17 @@ app.use((req, res, next) => {
     next();
 });
 
-
-// routing manager
-
-
-
 // setting template engine
 app.set("view engine","ejs");
 
 
 // middle ware
 app.use(express.static('./public'));
+app.use(bodyParser);
 app.use(session({ secret: "I Love Eating Blocks of Cheese", resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-
+    
 app.use(routes)
 
 database.sequelize.sync().then(function(){
