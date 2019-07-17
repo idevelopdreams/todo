@@ -34,17 +34,9 @@ exports.signup = (req, res) => {
     })
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 380ee75f960a42f98f00122865d13f157efe5bfb
 // POST user/login
 exports.userSignin = passport.authenticate('local', { 
     successRedirect: '/profile',
     failureRedirect: '/user/login' 
-<<<<<<< HEAD
-    })
-=======
 });
 
->>>>>>> 380ee75f960a42f98f00122865d13f157efe5bfb
