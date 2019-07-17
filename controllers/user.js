@@ -1,3 +1,4 @@
+const passport =require('../config/passport');
 
 //controlls what the user sees when they hit user/signup 
 exports.register = (req, res)=> {
@@ -34,3 +35,8 @@ exports.signup = (req, res) => {
     }) 
 }; 
 
+//POST user/login
+exports.userSignin =  passport.authenticate('local',{ 
+    successRedirect: '/profile',
+    failureRedirect: '/user/login'
+    }) 
