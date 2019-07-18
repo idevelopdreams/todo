@@ -14,7 +14,14 @@ module.exports = function(sequelize, DataTypes){
        password:{
            type: DataTypes.STRING,
            allowNull: false
+       },
+       name: {
+           type: DataTypes.STRING,
+       },
+       avatar: {
+           type: DataTypes.STRING
        }
+       
     });
 
     // creating custom model for user//

@@ -10,7 +10,8 @@ exports.login = (req, res) => {
 }
 // GET 4 /user/profile
 exports.profile = (req, res) => {
-    res.render('profile')
+    res.render('profile', 
+    {currentUser: req.user})
 }
 // GET 4 /logout
 exports.logout = (req, res) => {
@@ -18,18 +19,10 @@ exports.logout = (req, res) => {
     res.redirect('/user/login');
 }
 // POST 4 /user/signup
-exports.signup = (req, res) => {
-    console.log(req.body)
-    req.context.database.Users.create({
-        email: req.body.email,
-        password: req.body.password
-    }).then(function(){
-        res.redirect('/user/profile')
-    }).catch(function(err){
-        console.log(err);
-        res.json(err);
-    })
-}
+exports.signup = passport.authenticate('local-signup', {
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/signup'
+})
 // POST 4 /user/login
 exports.userSignin = passport.authenticate('local',{
     successRedirect: '/user/profile',
