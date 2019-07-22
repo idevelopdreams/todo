@@ -21,7 +21,8 @@
  <div class="container">
   <div class="row">
    <div class="col-md-6 col-md-offset-3">
-    <h2>Welcome, <%= currentUser.name %><span class="member-name"></span></h2>
+    <img src="<%= currentUser.photos[0].value %>" alt="">
+    <h2>Welcome, <%= currentUser.displayName %><span class="member-name"></span></h2>
    </div>
   </div>
  </div>
