@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy
 
 const db = require('../models');
 
@@ -54,6 +55,18 @@ passport.use('local-signup', new LocalStrategy(
         }
       });
     }
+));
+
+// for facebook login
+passport.use(new FacebookStrategy({
+    clientID: "717685225329429",
+    clientSecret: "be1fc81560220c895e19e366d27a831e",
+    callbackURL: "/return",
+    profileFields: ['id', 'displayName', 'photos', 'email']
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    return cb(null, profile);
+  }
 ));
 
 
