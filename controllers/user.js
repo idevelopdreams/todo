@@ -32,4 +32,13 @@ exports.signup = passport.authenticate('local-signup', {
 exports.userSignin =  passport.authenticate('local',{ 
     successRedirect: '/profile',
     failureRedirect: '/user/login'
-    }) 
+});
+
+// Get login/facebook
+exports.fblogin = passport.authenticate('facebook')
+
+// Get /return
+exports.fbcallback = passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/user/login'
+});

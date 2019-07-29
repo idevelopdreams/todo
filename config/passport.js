@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy
 
 const db = require('../models')
 
@@ -57,7 +58,19 @@ passport.use('local-signup', new LocalStrategy(
         }    
       });
     }
-  ));     
+  ));
+  
+// for facebook login
+passport.use(new FacebookStrategy({
+   clientID: "742686989522616",
+   clientSecret: "4687909234b749f1e87c6e5b4f6a089a",
+   callbackURL: "/return", 
+   profileFields: ['id', 'displayName', 'photos', 'email']
+  },
+  function(accessToken, refreshToken, profile, cb) {
+      return cb(null, profile);
+  }
+));
 
 
 //to authenticate users to a cookie we must serialize the user session
